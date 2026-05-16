@@ -1,0 +1,15 @@
+name: Keep Render Backend Alive
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # every 10 minutes
+  workflow_dispatch: # manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Backend
+        run: |
+          curl -X GET https://nestjs-blog-backend-b0dk.onrender.com/post/pagination/data?page=1
