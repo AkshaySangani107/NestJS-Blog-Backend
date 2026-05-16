@@ -2,8 +2,8 @@ name: Keep Render Backend Alive
 
 on:
   schedule:
-    - cron: "*/10 * * * *" # every 10 minutes
-  workflow_dispatch: # manual trigger
+    - cron: "*/5 * * * *" # every 5 minutes
+  workflow_dispatch:
 
 jobs:
   ping:
@@ -12,4 +12,5 @@ jobs:
     steps:
       - name: Ping Backend
         run: |
-          curl -X GET https://nestjs-blog-backend-b0dk.onrender.com/post/pagination/data?page=1
+          curl --fail --silent --show-error \
+          "https://nestjs-blog-backend-b0dk.onrender.com/post/pagination/data?page=1"
